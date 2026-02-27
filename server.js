@@ -46,16 +46,20 @@ app.get("/render", async (req, res) => {
 
     const browser = await puppeteer.launch(
         {
-            args: [
-				'--no-sandbox',
-        		'--disable-setuid-sandbox',
-				        '--disable-gpu',
-
-				   ]
+             headless: "new",
+			  args: [
+			    '--no-sandbox',
+			    '--disable-setuid-sandbox',
+			    '--disable-dev-shm-usage'
+			  ]
         }
     );
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "networkidle0", timeout: 60000 });
+    await page.goto(url, {
+		waitUntil: 'domcontentloaded',
+  		timeout: 60000
+		//waitUntil: "networkidle0", timeout: 60000 
+	  });
 	
 	await page.evaluate(() => {
 		// <img loading="lazy">
@@ -99,6 +103,7 @@ app.get("/render", async (req, res) => {
 });
 
 app.listen(80, () => console.log("Renderer działa na porcie 80"));
+
 
 
 
