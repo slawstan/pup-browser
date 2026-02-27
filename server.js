@@ -55,7 +55,7 @@ app.get("/render", async (req, res) => {
         }
     );
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "networkidle0" });
+    await page.goto(url, { waitUntil: "networkidle0", timeout: 60000 });
 	
 	await page.evaluate(() => {
 		// <img loading="lazy">
@@ -99,6 +99,7 @@ app.get("/render", async (req, res) => {
 });
 
 app.listen(80, () => console.log("Renderer działa na porcie 80"));
+
 
 
 
