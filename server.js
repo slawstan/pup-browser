@@ -49,6 +49,7 @@ app.get("/render", async (req, res) => {
             args: [
 				'--no-sandbox',
         		'--disable-setuid-sandbox',
+				        '--disable-gpu',
 
 				   ]
         }
@@ -98,6 +99,7 @@ app.get("/render", async (req, res) => {
 });
 
 app.listen(80, () => console.log("Renderer działa na porcie 80"));
+
 
 
 
