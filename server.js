@@ -45,8 +45,11 @@ app.get("/render", async (req, res) => {
     const url = req.query.url;
 
     const browser = await puppeteer.launch(
-		args: ['--no-sandbox', '--disable-setuid-sandbox']
-	);
+        {
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            ignoreDefaultArgs: ['--disable-extensions']
+        }
+    );
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle0" });
 	
@@ -92,6 +95,7 @@ app.get("/render", async (req, res) => {
 });
 
 app.listen(443, () => console.log("Renderer działa na porcie 443"));
+
 
 
 
