@@ -44,7 +44,9 @@ const app = express();
 app.get("/render", async (req, res) => {
     const url = req.query.url;
 
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch(
+		args: ['--no-sandbox', '--disable-setuid-sandbox']
+	);
     const page = await browser.newPage();
     await page.goto(url, { waitUntil: "networkidle0" });
 	
@@ -90,4 +92,5 @@ app.get("/render", async (req, res) => {
 });
 
 app.listen(80, () => console.log("Renderer działa na porcie 80"));
+
 
