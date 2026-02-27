@@ -91,6 +91,7 @@ app.get("/render", async (req, res) => {
     res.send(html);
 });
 
-app.listen(80, () => console.log("Renderer działa na porcie 80"));
+app.listen(443, () => console.log("Renderer działa na porcie 443"));
+
 
 
