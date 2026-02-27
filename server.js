@@ -89,4 +89,5 @@ app.get("/render", async (req, res) => {
     res.send(html);
 });
 
-app.listen(3000, () => console.log("Renderer działa na porcie 3000"));
+app.listen(80, () => console.log("Renderer działa na porcie 80"));
+
